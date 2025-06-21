@@ -29,11 +29,10 @@ export default {
         done:false
       }
       // console.log(todoObj);
-      this.addTodo(todoObj)
+      this.$emit('addTodo',todoObj)
       this.title = '';
     }
   },
-  props:['addTodo'],
 }
 </script>
 
