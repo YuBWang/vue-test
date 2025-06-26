@@ -16,17 +16,15 @@
 export default {
   name: "MyItem",
   //声明接收todo
-  props: ['todo'],
+  props: ['todo', 'checkTodo', 'deleteTodo'],
   methods:{
     handleCheck(id){
-      //this.checkTodo(id);
-      this.$bus.$emit('checkTodo',id)
+      this.checkTodo(id);
     },
     handleDelete(id){
       if(confirm(`确定删除编号为${id}的todo吗`)){
         // console.log(id);
-        //this.deleteTodo(id);
-        this.$bus.$emit('deleteTodo',id);
+        this.deleteTodo(id);
       }
     }
   }
