@@ -1,76 +1,21 @@
 <template>
-  <div id="root">
-    <div class="todo-container">
-      <div class="todo-wrap">
-        <MyHeader @addTodo="addTodo"/>
-        <MyList
-            :todos="todos"
-            />
-        <MyFooter
-            :todos="todos"
-            :checkAllTodo="checkAllTodo"
-            :clearAllDoneTodo="clearAllDoneTodo"
-        />
-      </div>
-    </div>
-  </div>
+  <el-row>
+  <el-button>默认按钮</el-button>
+  <el-button type="primary">主要按钮</el-button>
+  <el-button type="success">成功按钮</el-button>
+  <el-button type="info">信息按钮</el-button>
+  <el-button type="warning">警告按钮</el-button>
+  <el-button type="danger">危险按钮</el-button>
+</el-row>
+
 </template>
 
 <script>
-import MyHeader from "./components/MyHeader";
-import MyList from "./components/MyList";
-import MyFooter from './components/MyFooter';
+
 export default {
   name: "App",
   components:{
-    MyList,
-    MyFooter,
-    MyHeader
-  },
-  data() {
-    return {
-      todos: JSON.parse(localStorage.getItem("todos")) || []
-    }
-  },
-  methods:{
-    //添加的todo
-    addTodo(todo){
-      console.log('我是app组件，我收到了数据');
-      this.todos.unshift(todo);
-    },
-    checkTodo(id){
-      const todo = this.todos.find(todo => todo.id === id);
-      todo.done = !todo.done;
-    },
-    deleteTodo(id){
-      this.todos = this.todos.filter(todo => todo.id !== id);
-    },
-    checkAllTodo(done){
-      this.todos.forEach(todo => todo.done = done);
-    },
-    clearAllDoneTodo(){
-      this.todos = this.todos.filter(todo => !todo.done)
-    }
-  },
-  watch:{
-    todos:{
-      deep:true,
-      handler(value) {
-        localStorage.setItem("todos",JSON.stringify(value))
-      }
-      
-    }
-
-
-  },
-  // 绑定
-  mounted(){
-    this.$bus.$on('checkTodo',this.checkTodo);
-    this.$bus.$on('deleteTodo',this.deleteTodo);
-  },
-  beforeDestroy() {
-    this.$bus.$off('checkTodo');
-    this.$bus.$off('deleteTodo');
+    
   }
 }
 </script>
